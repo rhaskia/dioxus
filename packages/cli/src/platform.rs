@@ -173,6 +173,15 @@ impl Platform {
                 {
                     Some(Platform::Linux)
                 }
+                #[cfg(not(target_os = "linux"))]
+                {
+                    Some(Platform::Linux)
+                }
+                // Possibly need a something for freebsd? Maybe default to Linux?
+                #[cfg(not(any(target_os = "linux", target_os = "windows", target_os = "macos")))]
+                {
+                    None
+                }
             }
             "mobile" => None,
             "liveview" => Some(Platform::Liveview),
